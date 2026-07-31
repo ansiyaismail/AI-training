@@ -51,6 +51,22 @@ model = models.Sequential([
         name="hiddenlayer_1"
     ),
 
+from google.colab import files
+from PIL import Image
+
+# loading the MNIST Data
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# MNIST keeps 60,000 images for training and 10,000 images for testing purposes
+
+from google.colab import files
+from PIL import Image
+
+# loading the MNIST Data
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# MNIST keeps 60,000 images for training and 10,000 images for testing purposes
+
     layers.Dense(
         units=32,
         activation='relu',
@@ -63,3 +79,22 @@ model = models.Sequential([
         name="output_layer"
     )
 ])
+from google.colab import files
+from PIL import Image
+
+# loading the MNIST Data
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+x_test.shape  # 10,000 images, each of dimension 28x28
+
+
+# MNIST keeps 60,000 images for training and 10,000 images for testing purposes
+
+
+plt.imshow(x_train[0], cmap='gray')
+plt.show()
+
+print("Label:", y_train[0])
+
+
+x_train.shape  # 60,000 images, each of dimension 28x28plt.imshow(x_train[0], cmap='gray')
+plt.show()
