@@ -7,4 +7,59 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.datasets import mnist
 
 
-from google.colab import files10from PIL import Image11 12# loading the MNIST Data13(x_train, y_train), (x_test, y_test) = mnist.load_data()
+from google.colab import files
+from PIL import Image
+# loading the MNIST Data
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# Building the CNN Image Classifier
+
+model = models.Sequential([
+    layers.Input(shape=(28, 28, 1), name="input_layer"),
+
+    layers.Conv2D(
+        filters=16,
+        kernel_size=(3, 3),
+        activation='relu',
+        name="conv_layer_1"
+    ),
+
+    layers.MaxPooling2D(
+        pool_size=(2, 2),
+        name="pooling_layer_1"
+    ),
+
+    layers.Conv2D(
+        filters=32,
+        kernel_size=(3, 3),
+        activation='relu',
+        name="conv_layer_2"
+    ),
+
+    layers.MaxPooling2D(
+        pool_size=(2, 2),
+        name="pooling_layer_2"
+    ),
+
+    layers.Flatten(
+        name="flatten_layer"
+    ),
+
+    layers.Dense(
+        units=64,
+        activation='relu',
+        name="hiddenlayer_1"
+    ),
+
+    layers.Dense(
+        units=32,
+        activation='relu',
+        name="hiddenlayer_2"
+    ),
+
+    layers.Dense(
+        units=10,
+        activation='softmax',
+        name="output_layer"
+    )
+])
