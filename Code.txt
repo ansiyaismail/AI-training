@@ -99,4 +99,14 @@ print("Label:", y_train[0])
 x_train.shape  # 60,000 images, each of dimension 28x28plt.imshow(x_train[0], cmap='gray')
 plt.show()
 =======================
+# Install required packages
+!pip install -q langchain langchain_google_genai google_generativeai
 
+# Install additional LangChain packages
+!pip install langchain-core langchain-community langchain-experimental
+
+# Imports
+import os  # for environment variables
+
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.prompts import ChatPromptTemplate
