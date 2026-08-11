@@ -111,6 +111,8 @@ import os  # for environment variables
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 
+from langchain.chains import LLMChain, SequentialChain
+from langchain.prompts import PromptTemplate
 
 # setting up an environment to connect with Google Gemini
 os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
@@ -181,6 +183,8 @@ overall_chain = SequentialChain(
     input_variables=["topic"],  # only one input from the user
     output_variables=["title", "outline", "blog", "summary"]
 )
+
+
 
 result = overall_chain(
     {"topic": "AI driven Cybersecurity in Banking domain"}
