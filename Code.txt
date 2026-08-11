@@ -120,3 +120,20 @@ os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash"
 )
+
+================
+
+from langchain_core.prompts import PromptTemplate
+from langchain_classic.chains import LLMChain, SequentialChain
+
+# Chain 1 - Generating a Title from input topic from the user
+title_prompt = PromptTemplate(
+    input_variables=["topic"],  # this topic will come from the user
+    template="Create a catchy blog title about {topic}"
+)
+
+title_chain = LLMChain(
+    llm=llm,
+    prompt=title_prompt,
+    output_key="title"  # from the 1st chain, we are expecting a title as output
+)
