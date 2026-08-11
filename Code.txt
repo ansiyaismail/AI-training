@@ -110,3 +110,13 @@ import os  # for environment variables
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
+
+
+# setting up an environment to connect with Google Gemini
+os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
+
+
+# initialize and configure the LLM
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash"
+)
