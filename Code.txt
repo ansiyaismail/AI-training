@@ -175,3 +175,15 @@ summary_chain = LLMChain(
     llm=llm,
     prompt=summary_prompt
 )
+
+overall_chain = SequentialChain(
+    chains=[title_chain, outline_chain, blog_chain, summary_chain],
+    input_variables=["topic"],  # only one input from the user
+    output_variables=["title", "outline", "blog", "summary"]
+)
+
+result = overall_chain(
+    {"topic": "AI driven Cybersecurity in Banking domain"}
+)
+
+print(result['summary'])
