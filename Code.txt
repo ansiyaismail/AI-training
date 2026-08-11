@@ -191,3 +191,137 @@ result = overall_chain(
 )
 
 print(result['summary'])
+
+=====================================
+from langchain_core.prompts import PromptTemplate
+from langchain_classic.chains import LLMChain, SequentialChain
+
+# ----------------------------------
+# Chain 1: Complaint Classification
+# ----------------------------------
+
+classification_prompt = PromptTemplate(
+    input_variables=["complaint"],
+    template="""
+    Analyze the following telecom customer complaint.
+
+    Complaint: {complaint}
+
+    Provide:
+    1. Complaint Category
+    2. Severity (Low/Medium/High)
+    3. Customer Sentiment
+    """
+)
+
+classification_chain = LLMChain(
+    llm=llm,
+    prompt=classification_prompt,
+    output_key="classification"
+)
+
+# ----------------------------------
+# Chain 2: Root Cause Analysis
+# ----------------------------------
+
+root_cause_prompt = PromptTemplate(
+    input_variables=["classification"],
+    template="""
+    Based on the following complaint classification,
+    identify the likely root cause.
+
+    Classification:
+    {classification}
+
+    Provide a detailed root cause analysis.
+    """
+)
+
+root_cause_chain = LLMChain(
+    llm=llm,
+    prompt=root_cause_prompt,
+    output_key="root_cause"
+)
+
+# ----------------------------------
+# Chain 3: Resolution Recommendation
+# ----------------------------------
+
+resolution_prompt = PromptTemplate(
+    input_variables=["root_cause"],
+    template="""
+    Based on the following root cause analysis,
+    generate a recommended resolution plan.
+
+    Root Cause Analysis:
+    {root_cause}
+    """
+)
+
+resolution_chain = LLMChain(
+    llm=llm,
+    prompt=resolution_prompt,
+    output_key="resolution"
+)
+
+# ----------------------------------
+# Chain 4: Summary Generation
+# ----------------------------------
+
+summary_prompt = PromptTemplate(
+    input_variables=["resolution"],
+    template="""
+    Create a concise summary of the following resolution plan.
+
+    Resolution Plan:
+    {resolution}
+    """
+)
+
+summary_chain = LLMChain(
+    llm=llm,
+    prompt=summary_prompt,
+    output_key="summary"
+)
+
+# ----------------------------------
+# Sequential Chain
+# ----------------------------------
+
+overall_chain = SequentialChain(
+    chains=[
+        classification_chain,
+        root_cause_chain,
+        resolution_chain,
+        summary_chain
+    ],
+    input_variables=["complaint"],
+    output_variables=[
+        "classification",
+        "root_cause",
+        "resolution",
+        "summary"
+    ],
+    verbose=True
+)
+
+====================
+#execute the chain
+result = overall_chain.invoke(
+    {
+        "complaint": """
+        I have been experiencing frequent call drops and
+        very poor network coverage for the last
+
+Display Results
+print("=== Classification ===")
+print(result["classification"])
+
+print("\n=== Root Cause Analysis ===")
+print(result["root_cause"])
+
+print("\n=== Resolution Plan ===")
+print(result["resolution"])
+
+print("\n=== Summary ===")
+print(result["summary"])
