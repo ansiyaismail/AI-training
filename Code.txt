@@ -137,3 +137,16 @@ title_chain = LLMChain(
     prompt=title_prompt,
     output_key="title"  # from the 1st chain, we are expecting a title as output
 )
+
+# Chain 2 - Generating an outline from the Title
+
+outline_prompt = PromptTemplate(
+    input_variables=["title"],  # this has been generated as output from the previous chain
+    template="Create a structured outline for a blog post titled {title}"
+)
+
+outline_chain = LLMChain(
+    llm=llm,
+    prompt=outline_prompt,
+    output_key="outline"
+)
