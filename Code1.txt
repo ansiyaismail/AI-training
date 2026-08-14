@@ -37,3 +37,14 @@ for page in document:
 print("Total Pages:", len(document))
 
 print(report[:1000])  # first 1000 tokens/characters from the input PDF
+
+from langchain_google_genai import GoogleGenerativeAIEmbeddings  # using embedding model specific to Gemini
+
+embedding = GoogleGenerativeAIEmbeddings(
+    model="models/gemini-embedding-001"
+)
+
+from langchain_community.vectorstores import FAISS  # FAISS will be the VectorDB for the RAG pipeline
+from langchain_text_splitters import RecursiveCharacterTextSplitter  # will be helpful during chunking
+
+
