@@ -10,3 +10,12 @@
 from langchain_google_genai import ChatGoogleGenerativeAI  # we will configure our LLM
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+
+
+import os
+
+os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash"
+)
