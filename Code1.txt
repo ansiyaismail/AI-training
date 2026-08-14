@@ -59,3 +59,7 @@ vector_store = FAISS.from_documents(
     documents=chunks,
     embedding=embedding  # embedding will be performed using a specific embedding model
 )
+
+import os
+
+os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
