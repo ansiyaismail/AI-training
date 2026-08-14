@@ -47,4 +47,8 @@ embedding = GoogleGenerativeAIEmbeddings(
 from langchain_community.vectorstores import FAISS  # FAISS will be the VectorDB for the RAG pipeline
 from langchain_text_splitters import RecursiveCharacterTextSplitter  # will be helpful during chunking
 
-
+# chunking on the PDF Data
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
