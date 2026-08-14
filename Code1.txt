@@ -1,0 +1,7 @@
+!pip -q install -U \langchain \ langchain-google-genai \ langchain-community \ langchain-text-splitters \ google-genai \ pypdf \ faiss-cpu
+
+
+#LangChain-Google-GenAI - since we are using LLM from Google-Gemini
+#Text-Splitters - helpful when we perform chunking operation
+#PyPDF - since our of source of data is a PDF file - to load and read the data
+#FAISS is a Vector Store which we will use when we build our RAG Pipeline
