@@ -27,4 +27,13 @@ from langchain_community.document_loaders import PyPDFLoader
 loader = PyPDFLoader("/content/My_AxiOraa_Ltd_Synthetic_Annual_Report_2025.pdf")
 
 
+document = loader.load()
 
+report = ""
+
+for page in document:
+    report += page.page_content + '\n'
+
+print("Total Pages:", len(document))
+
+print(report[:1000])  # first 1000 tokens/characters from the input PDF
