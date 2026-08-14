@@ -5,3 +5,8 @@
 #Text-Splitters - helpful when we perform chunking operation
 #PyPDF - since our of source of data is a PDF file - to load and read the data
 #FAISS is a Vector Store which we will use when we build our RAG Pipeline
+
+
+from langchain_google_genai import ChatGoogleGenerativeAI  # we will configure our LLM
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
