@@ -19,3 +19,12 @@ os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash"
 )
+
+
+
+from langchain_community.document_loaders import PyPDFLoader
+
+loader = PyPDFLoader("/content/My_AxiOraa_Ltd_Synthetic_Annual_Report_2025.pdf")
+
+
+
