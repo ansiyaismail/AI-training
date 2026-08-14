@@ -55,3 +55,7 @@ text_splitter = RecursiveCharacterTextSplitter(
 
 chunks = text_splitter.split_documents(document)
 
+vector_store = FAISS.from_documents(
+    documents=chunks,
+    embedding=embedding  # embedding will be performed using a specific embedding model
+)
