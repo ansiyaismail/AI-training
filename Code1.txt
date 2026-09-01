@@ -1,9 +1,5 @@
-# Generate predictions on test data
-2
-y_pred = model.predict(X_test)
-3
- 
-4
-print("Predictions:")
-5
-print(y_pred[:10])
+# Generate probability predictions
+y_prob = model.predict_proba(X_test)
+
+print("Prediction Probabilities:")
+print(y_prob[:5])
