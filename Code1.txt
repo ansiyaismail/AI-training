@@ -1,65 +1,7 @@
-!pip -q install -U \langchain \ langchain-google-genai \ langchain-community \ langchain-text-splitters \ google-genai \ pypdf \ faiss-cpu
-
-
-#LangChain-Google-GenAI - since we are using LLM from Google-Gemini
-#Text-Splitters - helpful when we perform chunking operation
-#PyPDF - since our of source of data is a PDF file - to load and read the data
-#FAISS is a Vector Store which we will use when we build our RAG Pipeline
-
-
-from langchain_google_genai import ChatGoogleGenerativeAI  # we will configure our LLM
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-
-
-import os
-
-os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
-
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash"
-)
-
-
-
-from langchain_community.document_loaders import PyPDFLoader
-
-loader = PyPDFLoader("/content/My_AxiOraa_Ltd_Synthetic_Annual_Report_2025.pdf")
-
-
-document = loader.load()
-
-report = ""
-
-for page in document:
-    report += page.page_content + '\n'
-
-print("Total Pages:", len(document))
-
-print(report[:1000])  # first 1000 tokens/characters from the input PDF
-
-from langchain_google_genai import GoogleGenerativeAIEmbeddings  # using embedding model specific to Gemini
-
-embedding = GoogleGenerativeAIEmbeddings(
-    model="models/gemini-embedding-001"
-)
-
-from langchain_community.vectorstores import FAISS  # FAISS will be the VectorDB for the RAG pipeline
-from langchain_text_splitters import RecursiveCharacterTextSplitter  # will be helpful during chunking
-
-# chunking on the PDF Data
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000,
-    chunk_overlap=200
-)
-
-chunks = text_splitter.split_documents(document)
-
-vector_store = FAISS.from_documents(
-    documents=chunks,
-    embedding=embedding  # embedding will be performed using a specific embedding model
-)
-
-import os
-
-os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
+rows, columns = df.shape
+8
+ 
+9
+print("Number of rows:", rows)
+10
+print("Number of columns:", columns)
