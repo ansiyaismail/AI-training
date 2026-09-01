@@ -7,3 +7,9 @@ print(df['insuranceclaim'].value_counts(normalize=True) * 100)
 sns.countplot(x='insuranceclaim', data=df)
 plt.title('Distribution of Insurance Claims')
 plt.show()
+Interpretation
+
+After running the code:
+
+If the counts of 0 and 1 are approximately equal (for example, 50%-50% or 55%-45%), the target variable is balanced.
+If one class significantly outweighs the other (for example, 90%-10% or 80%-20%), the target variable is imbalanced.
