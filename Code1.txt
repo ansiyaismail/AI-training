@@ -7,4 +7,12 @@ print("Number of rows:", rows)
 print("Number of columns:", columns)
 
 
-https://colab.research.google.com/drive/1e_kvkbgsfH5sMzkkCbc-2cHaaOi5ASyf#scrollTo=lqHHt2kEjFqv
+# Select numerical columns
+7
+numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns
+8
+ 
+9
+print("Numerical Variables:")
+10
+print(list(numerical_columns))
