@@ -26,4 +26,25 @@ axes[1, 1].set_title('Boxplot of BMI')
 sns.histplot(df['charges'], bins=20, kde=True, color='purple', ax=axes[2, 0])
 axes[2, 0].set_title('Distribution of Charges')
 
-sns.boxplot(x=df['charges'], color
+sns.boxplot(x=df['charges'], color='pink', ax=axes[2, 1])
+axes[2, 1].set_title('Boxplot of Charges')
+
+# INSURANCE CLAIMS
+sns.countplot(x='insuranceclaim', data=df, palette='Set2', ax=axes[3, 0])
+axes[3, 0].set_title('Distribution of Insurance Claims')
+
+# Percentage distribution of insurance claims
+claim_percent = df['insuranceclaim'].value_counts(normalize=True) * 100
+
+sns.barplot(
+    x=claim_percent.index,
+    y=claim_percent.values,
+    palette='Set2',
+    ax=axes[3, 1]
+)
+axes[3, 1].set_title('Insurance Claims (%)')
+axes[3, 1].set_xlabel('Insurance Claim')
+axes[3, 1].set_ylabel('Percentage')
+
+plt.tight_layout()
+plt.show()
