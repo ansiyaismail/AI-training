@@ -16,3 +16,13 @@ numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns
 print("Numerical Variables:")
 10
 print(list(numerical_columns))
+
+# Select categorical columns
+7
+categorical_columns = df.select_dtypes(include=['object']).columns
+8
+ 
+9
+print("Categorical Variables:")
+10
+print(list(categorical_columns))
