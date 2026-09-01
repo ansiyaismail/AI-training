@@ -3,15 +3,13 @@ import pandas as pd
 # Load dataset
 df = pd.read_csv("insurance.csv")
 
-# Independent variables (Features)
+# Separate features and target
 X = df.drop('insuranceclaim', axis=1)
-
-# Target variable
 y = df['insuranceclaim']
 
-# Display the first 5 records
-print("Independent Variables (X):")
-print(X.head())
+# One-Hot Encode categorical variables
+X_encoded = pd.get_dummies(X, columns=['sex', 'smoker', 'region'], drop_first=True)
 
-print("\nTarget Variable (y):")
-print(y.head())
+# Display the encoded dataset
+print(X_encoded.head())
+``
