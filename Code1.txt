@@ -1,7 +1,9 @@
-# Define the target variable
-2
-target_variable = 'insuranceclaim'
-3
- 
-4
-print("Target Variable:", target_variable)
+import seaborn as sns
+import matplotlib.pyplot as plt
+# Count instances of each class
+print(df['insuranceclaim'].value_counts())
+# Percentage distribution
+print(df['insuranceclaim'].value_counts(normalize=True) * 100)
+sns.countplot(x='insuranceclaim', data=df)
+plt.title('Distribution of Insurance Claims')
+plt.show()
