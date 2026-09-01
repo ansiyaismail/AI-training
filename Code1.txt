@@ -1,15 +1,29 @@
-import seaborn as sns
+import pandas as pd
 import matplotlib.pyplot as plt
-# Count instances of each class
-print(df['insuranceclaim'].value_counts())
-# Percentage distribution
-print(df['insuranceclaim'].value_counts(normalize=True) * 100)
-sns.countplot(x='insuranceclaim', data=df)
-plt.title('Distribution of Insurance Claims')
-plt.show()
-Interpretation
+import seaborn as sns
 
-After running the code:
+# Load dataset
+df = pd.read_csv("insurance.csv")
 
-If the counts of 0 and 1 are approximately equal (for example, 50%-50% or 55%-45%), the target variable is balanced.
-If one class significantly outweighs the other (for example, 90%-10% or 80%-20%), the target variable is imbalanced.
+# Create subplots
+fig, axes = plt.subplots(4, 2, figsize=(14, 18))
+
+# AGE
+sns.histplot(df['age'], bins=20, kde=True, color='skyblue', ax=axes[0, 0])
+axes[0, 0].set_title('Distribution of Age')
+
+sns.boxplot(x=df['age'], color='lightgreen', ax=axes[0, 1])
+axes[0, 1].set_title('Boxplot of Age')
+
+# BMI
+sns.histplot(df['bmi'], bins=20, kde=True, color='orange', ax=axes[1, 0])
+axes[1, 0].set_title('Distribution of BMI')
+
+sns.boxplot(x=df['bmi'], color='yellow', ax=axes[1, 1])
+axes[1, 1].set_title('Boxplot of BMI')
+
+# CHARGES
+sns.histplot(df['charges'], bins=20, kde=True, color='purple', ax=axes[2, 0])
+axes[2, 0].set_title('Distribution of Charges')
+
+sns.boxplot(x=df['charges'], color
