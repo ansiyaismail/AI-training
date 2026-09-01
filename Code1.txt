@@ -1,50 +1,17 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Load dataset
 df = pd.read_csv("insurance.csv")
 
-# Create subplots
-fig, axes = plt.subplots(4, 2, figsize=(14, 18))
+# Independent variables (Features)
+X = df.drop('insuranceclaim', axis=1)
 
-# AGE
-sns.histplot(df['age'], bins=20, kde=True, color='skyblue', ax=axes[0, 0])
-axes[0, 0].set_title('Distribution of Age')
+# Target variable
+y = df['insuranceclaim']
 
-sns.boxplot(x=df['age'], color='lightgreen', ax=axes[0, 1])
-axes[0, 1].set_title('Boxplot of Age')
+# Display the first 5 records
+print("Independent Variables (X):")
+print(X.head())
 
-# BMI
-sns.histplot(df['bmi'], bins=20, kde=True, color='orange', ax=axes[1, 0])
-axes[1, 0].set_title('Distribution of BMI')
-
-sns.boxplot(x=df['bmi'], color='yellow', ax=axes[1, 1])
-axes[1, 1].set_title('Boxplot of BMI')
-
-# CHARGES
-sns.histplot(df['charges'], bins=20, kde=True, color='purple', ax=axes[2, 0])
-axes[2, 0].set_title('Distribution of Charges')
-
-sns.boxplot(x=df['charges'], color='pink', ax=axes[2, 1])
-axes[2, 1].set_title('Boxplot of Charges')
-
-# INSURANCE CLAIMS
-sns.countplot(x='insuranceclaim', data=df, palette='Set2', ax=axes[3, 0])
-axes[3, 0].set_title('Distribution of Insurance Claims')
-
-# Percentage distribution of insurance claims
-claim_percent = df['insuranceclaim'].value_counts(normalize=True) * 100
-
-sns.barplot(
-    x=claim_percent.index,
-    y=claim_percent.values,
-    palette='Set2',
-    ax=axes[3, 1]
-)
-axes[3, 1].set_title('Insurance Claims (%)')
-axes[3, 1].set_xlabel('Insurance Claim')
-axes[3, 1].set_ylabel('Percentage')
-
-plt.tight_layout()
-plt.show()
+print("\nTarget Variable (y):")
+print(y.head())
