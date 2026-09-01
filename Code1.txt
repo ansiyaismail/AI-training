@@ -1,15 +1,9 @@
-If your task is simply "Build a classification model and train it", Random Forest is a strong choice:
-
-
-from sklearn.ensemble import RandomForestClassifier
-
-# Build model
-model = RandomForestClassifier(
-    n_estimators=100,
-    random_state=42
-)
-
-# Train model
-model.fit(X_train, y_train)
-
-print("Model training completed.")
+# Generate predictions on test data
+2
+y_pred = model.predict(X_test)
+3
+ 
+4
+print("Predictions:")
+5
+print(y_pred[:10])
