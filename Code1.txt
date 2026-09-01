@@ -1,1 +1,15 @@
-Preprocessing transformations should be learned from the training dataset rather than the complete dataset to prevent data leakage. If information from the test dataset is used during preprocessing, the model gains access to data it would not have during real-world predictions, leading to overly optimistic performance estimates. Therefore, the dataset should first be split into training and testing sets, preprocessing techniques should be fitted on the training data only, and the resulting transformations should then be applied to the test data. This ensures a fair and realistic evaluation of the model.
+If your task is simply "Build a classification model and train it", Random Forest is a strong choice:
+
+
+from sklearn.ensemble import RandomForestClassifier
+
+# Build model
+model = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
+
+# Train model
+model.fit(X_train, y_train)
+
+print("Model training completed.")
